@@ -4,6 +4,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
+
 
 const ManageProduct = ({ bike }) => {
     const { name, img, price, _id } = bike;
@@ -41,7 +44,7 @@ const ManageProduct = ({ bike }) => {
                         price : {price}
                     </Typography>
 
-                    <Button onClick={handleDelete} variant="contained">Delete</Button>
+                    <Button onClick={handleDelete} variant="contained"><DeleteForeverIcon /> Delete</Button>
 
                 </CardContent>
             </Card>

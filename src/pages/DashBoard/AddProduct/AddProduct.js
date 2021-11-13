@@ -29,17 +29,17 @@ const AddProduct = () => {
     return (
         <div>
             {/* form  */}
-            <h1>Add a New place you like</h1>
+            <h1>Add a New Product</h1>
             <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={handleSubmit(onSubmit)}>
-                <input style={{ marginBottom: '5px', paddingTop: '5px' }} {...register("name", { required: true })} placeholder='Name' />
+                <input style={{ marginBottom: '5px', paddingTop: '5px' }} {...register("name", { required: true })} placeholder='Bike model name' />
 
                 <input style={{ marginBottom: '5px', paddingTop: '5px' }} {...register("description", { required: true })} placeholder='Description' />
 
-                <input style={{ marginBottom: '5px', paddingTop: '5px' }} defaultValue='TK.000,000' {...register("price", { required: true })} placeholder='TK.000,000' />
+                <input style={{ marginBottom: '5px', paddingTop: '5px' }} {...register("price", { required: true })} placeholder='price' />
 
                 <input style={{ marginBottom: '5px', paddingTop: '5px' }} {...register("img", { required: true })} placeholder='Image URL' />
 
-                <input style={{ marginBottom: '5px', paddingTop: '5px', backgroundColor: 'blue', color: 'white' }} value='Submit' className='mb-2 btn btn-outline-danger my-btn' type="submit" />
+                <input style={{ marginBottom: '5px', paddingTop: '5px', backgroundColor: 'blue', color: 'white' }} value='Submit' type="submit" />
             </form>
         </div>
     );

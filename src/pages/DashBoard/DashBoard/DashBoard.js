@@ -29,13 +29,14 @@ import { textAlign } from '@mui/system';
 import useAuth from '../../../hooks/useAuth';
 import DashBoardHome from '../DashBoardHome/DashBoardHome';
 import MyOrders from '../MyOrders/MyOrders';
-import Review from '../Review/Review';
+import Review from '../../Home/Review/Review';
 import Pay from '../Pay/Pay';
 import AddAdmin from '../../AddAdmin/AddAdmin';
 import AdminRoute from '../../Login/AdminRoute/AdminRoute';
 import AddProduct from '../AddProduct/AddProduct';
 import AllOrders from '../AllOrders/AllOrders';
 import ManageProducts from '../ManageProducts/ManageProducts';
+import AddReview from '../AddReview/AddReview';
 
 
 const drawerWidth = 240;
@@ -77,10 +78,15 @@ function DashBoard(props) {
 
                 }
 
-                <Link to={`${url}/myOrders`}><Button>My Orders</Button></Link>
-                <Link to={`${url}/review`}><Button>Review</Button></Link>
-                <Link to={`${url}/pay`}><Button>Pay</Button></Link>
-                <Link to='/'><Button onClick={logout}>Log out</Button></Link>
+                {!admin && <Box>
+                    <Link to={`${url}/myOrders`}><Button>My Orders</Button></Link>
+                    <br />
+                    <Link to={`${url}/review`}><Button>Add Review</Button></Link>
+                    <br />
+                    <Link to={`${url}/pay`}><Button>Pay</Button></Link>
+                    <br />
+                    <Link to='/'><Button onClick={logout}>Log out</Button></Link>
+                </Box>}
             </Box>
         </div >
     );
@@ -165,7 +171,7 @@ function DashBoard(props) {
                     </Route>
 
                     <Route path={`${path}/review`}>
-                        <Review></Review>
+                        <AddReview></AddReview>
                     </Route>
 
                     <AdminRoute path={`${path}/addAdmin`}>

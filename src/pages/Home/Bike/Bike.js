@@ -25,7 +25,7 @@ const Bike = ({ bike }) => {
                     <Typography
                         sx={{ m: 5, fontWeight: '600' }}
                         variant="h6" color="red">
-                        price : {price}
+                        price : TK.{price}
                     </Typography>
 
 

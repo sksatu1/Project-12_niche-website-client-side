@@ -68,7 +68,7 @@ const useFirebase = () => {
             .then((userCredential) => {
                 // Signed in 
                 console.log(location.state)
-                const destination = location?.state?.from || '/';
+                const destination = location?.state?.from || '/dashboard';
                 // console.log(destination);
                 history.replace(destination);
                 setAuthError('');
@@ -94,7 +94,7 @@ const useFirebase = () => {
                 // save new user to database -----------
                 saveUser(user.email, user.displayName, 'PUT');
 
-                const destination = location?.state?.from || '/';
+                const destination = location?.state?.from || '/dashboard';
                 history.replace(destination);
 
                 setAuthError('');
