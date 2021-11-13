@@ -2,22 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Button, Container } from '@mui/material';
-import UnstyledButtonCustom from '../ButtonRoot/UnstyledButtonCustom';
+import { Alert, Button, Container, Grid } from '@mui/material';
+import { Box } from '@mui/system';
+import NavBar from '../Shared/NavBar/NavBar';
+import Footer from '../Shared/Footer/Footer';
+import { useForm } from 'react-hook-form';
+import useAuth from '../../hooks/useAuth';
+
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -32,16 +25,12 @@ const ExpandMore = styled((props) => {
 
 
 const Purchase = () => {
-    const [order, setOrder] = useState({});
-
+    const { user } = useAuth();
     const { id } = useParams();
+    const [order, setOrder] = useState({});
+    const [isSuccess, setIsSuccess] = useState(false);
 
-
-    const [expanded, setExpanded] = React.useState(false);
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
 
     useEffect(() => {
@@ -50,51 +39,144 @@ const Purchase = () => {
             .then(data => setOrder(data))
     }, [])
 
-    return (
-        <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '20px' }}>
-            <Card sx={{ maxWidth: 345 }}>
+    const onSubmit = data => {
+        data.order = order;
+        data.status = 'pending'
+        console.log(data)
 
-                <CardMedia
-                    component="img"
-                    height="194"
-                    image={order.img}
-                    alt="Paella dish"
-                />
-                <CardContent>
-                    <Typography variant="h6" color="text.secondary">
-                        {
-                            order.name
-                        }
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                        {
-                            order.price
-                        }
-                    </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                    <Button variant="contained">Contained</Button>
-                    <ExpandMore
-                        expand={expanded}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label="show more"
-                    >
-                        <ExpandMoreIcon />
-                    </ExpandMore>
-                </CardActions>
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <CardContent>
-                        <Typography paragraph>Description</Typography>
-                        <Typography paragraph>
+        // save to db ------------------
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.insertedId)
+                if (data.insertedId) {
+                    setIsSuccess(true);
+                }
+            })
+
+
+    };
+
+    // const [expanded, setExpanded] = React.useState(false);
+
+    // const handleExpandClick = () => {
+    //     setExpanded(!expanded);
+    // };
+
+
+    return (
+
+        <Box>
+
+            <NavBar></NavBar>
+
+            <Grid container spacing={2}>
+                <Grid item xs={4}>
+                    <img width="100%" src={order.img} alt="" />
+                </Grid>
+                <Grid item sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'left' }} xs={8}>
+                    <Box>
+                        <Typography sx={{ marginBottom: '20px', fontWeight: '600' }} variant='h4'>
+                            {
+                                order.name
+                            }
+                        </Typography>
+                        <Typography sx={{ marginBottom: '20px' }} variant='h4'>
+                            {
+                                order.price
+                            }
+                        </Typography>
+                        <Typography sx={{ marginBottom: '20px' }} variant='p'>
                             {
                                 order.description
                             }
                         </Typography>
-                    </CardContent>
-                </Collapse>
-            </Card>
-        </Container>
+                        <br />
+                        <br />
+                        <br />
+
+                    </Box>
+                </Grid>
+            </Grid>
+
+
+            {/*-------------------------- form------------------------------------  */}
+
+            <h1>Please give your information and submit</h1>
+
+            <form style={{ marginBottom: '10px' }} onSubmit={handleSubmit(onSubmit)}>
+
+                <input style={{ width: '60%', marginBottom: '5px' }} defaultValue={user.displayName} {...register("userName", { required: true })} readOnly />
+
+                <input style={{ width: '60%', marginBottom: '5px' }} defaultValue={user.email} {...register("email", { required: true })} readOnly />
+
+                <input style={{ width: '60%', marginBottom: '5px' }} placeholder='address'  {...register("address", { required: true })} />
+
+                <input type='tel' style={{ width: '60%', marginBottom: '5px' }} placeholder='phone'  {...register("phone", { required: true })} />
+
+                {/* errors will return when field validation fails  */}
+                {errors.exampleRequired && <span>This field is required</span>}
+                <br />
+                <input style={{ backgroundColor: '#1976d2', color: 'white', padding: '5px', borderRadius: '5px', fontWeight: "600" }} value='Place Order' type="submit" />
+            </form>
+            {
+                isSuccess && <Alert severity="success">Order submitted successfully !</Alert>
+            }
+            <Footer></Footer>
+        </Box>
+
+
+
+        // <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '20px' }}>
+        //     <Card sx={{ maxWidth: 600 }}>
+
+        //         <CardMedia
+        //             component="img"
+        //             height="194"
+        //             image={order.img}
+        //             alt="Paella dish"
+        //         />
+        //         <CardContent>
+        //             <Typography variant="h6" color="text.secondary">
+        //                 {
+        //                     order.name
+        //                 }
+        //             </Typography>
+        //             <Typography variant="h6" color="text.secondary">
+        //                 {
+        //                     order.price
+        //                 }
+        //             </Typography>
+        //         </CardContent>
+        //         <CardActions disableSpacing>
+        //             <Button variant="contained">Contained</Button>
+        //             <ExpandMore
+        //                 expand={expanded}
+        //                 onClick={handleExpandClick}
+        //                 aria-expanded={expanded}
+        //                 aria-label="show more"
+        //             >
+        //                 <ExpandMoreIcon />
+        //             </ExpandMore>
+        //         </CardActions>
+        //         <Collapse in={expanded} timeout="auto" unmountOnExit>
+        //             <CardContent>
+        //                 <Typography paragraph>Description</Typography>
+        //                 <Typography paragraph>
+        //                     {
+        //                         order.description
+        //                     }
+        //                 </Typography>
+        //             </CardContent>
+        //         </Collapse>
+        //     </Card>
+        // </Container>
     );
 };
 

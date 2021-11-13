@@ -31,14 +31,20 @@ import DashBoardHome from '../DashBoardHome/DashBoardHome';
 import MyOrders from '../MyOrders/MyOrders';
 import Review from '../Review/Review';
 import Pay from '../Pay/Pay';
+import AddAdmin from '../../AddAdmin/AddAdmin';
+import AdminRoute from '../../Login/AdminRoute/AdminRoute';
+import AddProduct from '../AddProduct/AddProduct';
+import AllOrders from '../AllOrders/AllOrders';
+import ManageProducts from '../ManageProducts/ManageProducts';
 
 
 const drawerWidth = 240;
 
 function DashBoard(props) {
-    const { logout } = useAuth();
+    const { logout, admin } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+
 
     //------------------------------------------------ nested route -----------------------------------------
     // The `path` lets us build <Route> paths that are
@@ -55,8 +61,22 @@ function DashBoard(props) {
             <Toolbar />
             <Divider />
             {/* <Button onClick={logout}>Log out</Button> */}
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <Link to='/'><Button>Home</Button></Link>
+
+                {admin &&
+                    <Box>
+                        <Link to={`${url}/addAdmin`}><Button>Add Admin</Button></Link>
+                        <br />
+                        <Link to={`${url}/addProduct`}><Button>Add Product</Button></Link>
+                        <br />
+                        <Link to={`${url}/allOrders`}><Button>All Orders</Button></Link>
+                        <br />
+                        <Link to={`${url}/manageProducts`}><Button>Manage Products</Button></Link>
+                    </Box>
+
+                }
+
                 <Link to={`${url}/myOrders`}><Button>My Orders</Button></Link>
                 <Link to={`${url}/review`}><Button>Review</Button></Link>
                 <Link to={`${url}/pay`}><Button>Pay</Button></Link>
@@ -140,9 +160,25 @@ function DashBoard(props) {
                         <MyOrders></MyOrders>
                     </Route>
 
+                    <Route path={`${path}/allOrders`}>
+                        <AllOrders></AllOrders>
+                    </Route>
+
                     <Route path={`${path}/review`}>
                         <Review></Review>
                     </Route>
+
+                    <AdminRoute path={`${path}/addAdmin`}>
+                        <AddAdmin></AddAdmin>
+                    </AdminRoute>
+
+                    <AdminRoute path={`${path}/manageProducts`}>
+                        <ManageProducts></ManageProducts>
+                    </AdminRoute>
+
+                    <AdminRoute path={`${path}/addProduct`}>
+                        <AddProduct></AddProduct>
+                    </AdminRoute>
 
                     <Route path={`${path}/pay`}>
                         <Pay></Pay>

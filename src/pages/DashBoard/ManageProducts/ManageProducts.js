@@ -1,8 +1,9 @@
-import { Container, Grid, Box, Typography, CircularProgress } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import Bike from '../Bike/Bike';
+import ManageProduct from '../ManageProduct/ManageProduct';
 
-const Bikes = ({ slice }) => {
+const ManageProducts = () => {
     const [bikes, setBikes] = useState([]);
 
     useEffect(() => {
@@ -10,19 +11,16 @@ const Bikes = ({ slice }) => {
             .then(res => res.json())
             .then(data => setBikes(data))
     }, [])
-
-
-
     return (
         <Container>
-            <Typography sx={{ color: 'blue', fontWeight: '600' }} variant="h4">Our Top {bikes.length} Bike Collections</Typography>
+            <Typography sx={{ color: 'blue', fontWeight: '600' }} variant="h4">Our Top Bike Collections</Typography>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {
-                        bikes.slice(0, slice).map(bike => <Bike
+                        bikes.map(bike => <ManageProduct
                             key={bike._id}
                             bike={bike}
-                        ></Bike>)
+                        ></ManageProduct>)
                     }
                 </Grid>
             </Box>
@@ -30,4 +28,4 @@ const Bikes = ({ slice }) => {
     );
 };
 
-export default Bikes;
+export default ManageProducts;

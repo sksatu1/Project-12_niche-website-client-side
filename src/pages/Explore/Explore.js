@@ -4,8 +4,8 @@ import Bikes from '../Home/Bikes/Bikes';
 import NavBar from '../Shared/NavBar/NavBar';
 
 const Explore = () => {
-    
-    const slice = 10;
+
+    const slice = 100;
     return (
         <div>
             <NavBar />

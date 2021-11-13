@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../../Shared/Footer/Footer';
 import NavBar from '../../Shared/NavBar/NavBar';
 import Banner from '../Banner/Banner';
 import Bikes from '../Bikes/Bikes';
@@ -14,6 +15,7 @@ const Home = () => {
                 slice={slice}
             ></Bikes>
             <HomeAccordion></HomeAccordion>
+            <Footer></Footer>
         </div>
     );
 };

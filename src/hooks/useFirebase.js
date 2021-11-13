@@ -106,6 +106,13 @@ const useFirebase = () => {
     }
 
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setAdmin(data.admin);
+            })
+    }, [user.email])
 
 
     const logout = () => {
@@ -127,10 +134,6 @@ const useFirebase = () => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
-                getIdToken(user)
-                    .then(idToken => {
-                        setToken(idToken);
-                    })
             } else {
                 setUser({});
             }
