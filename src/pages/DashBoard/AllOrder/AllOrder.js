@@ -7,7 +7,7 @@ const AllOrder = ({ orderInfo }) => {
     const product = orderInfo.order;
 
     const handleConfirm = () => {
-        fetch(`http://localhost:5000/orders/${orderInfo._id}`, {
+        fetch(`https://shielded-savannah-24056.herokuapp.com/orders/${orderInfo._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

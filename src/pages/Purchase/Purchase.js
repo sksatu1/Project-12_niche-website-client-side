@@ -34,7 +34,7 @@ const Purchase = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://shielded-savannah-24056.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => setOrder(data))
     }, [])
@@ -45,7 +45,7 @@ const Purchase = () => {
         console.log(data)
 
         // save to db ------------------
-        fetch('http://localhost:5000/orders', {
+        fetch('https://shielded-savannah-24056.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

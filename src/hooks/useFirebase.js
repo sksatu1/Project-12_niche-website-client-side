@@ -107,7 +107,7 @@ const useFirebase = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user.email}`)
+        fetch(`https://shielded-savannah-24056.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setAdmin(data.admin);
@@ -143,18 +143,18 @@ const useFirebase = () => {
     }, [])
 
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/users/${user.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setAdmin(data.admin);
-            })
-    }, [user.email])
+    // useEffect(() => {
+    //     fetch(`https://shielded-savannah-24056.herokuapp.com/users/${user.email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setAdmin(data.admin);
+    //         })
+    // }, [user.email])
 
 
     const saveUser = (email, displayName, methodName) => {
         const user = { email, displayName };
-        fetch('http://localhost:5000/users', {
+        fetch('https://shielded-savannah-24056.herokuapp.com/users', {
             method: methodName,
             headers: {
                 'content-type': 'application/json'

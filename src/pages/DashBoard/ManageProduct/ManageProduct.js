@@ -16,7 +16,7 @@ const ManageProduct = ({ bike }) => {
         const proceed = window.confirm('Are you sure you want to delete?')
 
         if (proceed) {
-            fetch(`http://localhost:5000/orders/${_id}`, {
+            fetch(`https://shielded-savannah-24056.herokuapp.com/products/${_id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
