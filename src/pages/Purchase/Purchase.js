@@ -28,7 +28,6 @@ const Purchase = () => {
     const { user } = useAuth();
     const { id } = useParams();
     const [order, setOrder] = useState({});
-    const [isSuccess, setIsSuccess] = useState(false);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -56,7 +55,8 @@ const Purchase = () => {
             .then(data => {
                 console.log(data.insertedId)
                 if (data.insertedId) {
-                    setIsSuccess(true);
+                    alert('Order Added .Please go to dashboard to check your order');
+                    window.location.reload();
                 }
             })
 
@@ -123,9 +123,7 @@ const Purchase = () => {
                 <br />
                 <input style={{ backgroundColor: '#1976d2', color: 'white', padding: '5px', borderRadius: '5px', fontWeight: "600" }} value='Place Order' type="submit" />
             </form>
-            {
-                isSuccess && <Alert severity="success">Order submitted successfully !</Alert>
-            }
+
             <Footer></Footer>
         </Box>
 
