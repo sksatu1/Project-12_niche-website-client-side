@@ -1,13 +1,13 @@
 import { Card, CardContent, CardMedia, Grid, Typography, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import useAuth from '../../../hooks/useAuth';
+// import useAuth from '../../../hooks/useAuth';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
 const Order = ({ orderInfo }) => {
     const product = orderInfo.order;
-    const { user } = useAuth();
+    // const { user } = useAuth();
 
     // delete --------------------------
     const handleDelete = id => {
