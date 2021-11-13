@@ -15,7 +15,7 @@ const Bikes = ({ slice }) => {
 
     return (
         <Container>
-            <Typography sx={{ color: 'blue', fontWeight: '600' }} variant="h4">Our Top {bikes.length} Bike Collections</Typography>
+            <Typography sx={{ color: 'blue', fontWeight: '600', my: '15px' }} variant="h4">Our Collections</Typography>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {

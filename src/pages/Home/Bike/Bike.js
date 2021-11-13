@@ -11,7 +11,7 @@ const Bike = ({ bike }) => {
     const { name, img, price, _id } = bike;
     return (
         <Grid item xs={4} sm={4} md={4}>
-            <Card sx={{ height: '100%' }}>
+            <Card sx={{ height: '100%', boxShadow: 5 }}>
                 <CardMedia
                     height="300px"
                     component="img"
@@ -27,10 +27,6 @@ const Bike = ({ bike }) => {
                         variant="h6" color="red">
                         price : TK.{price}
                     </Typography>
-
-
-                    {<Link to={`/purchase/${_id}`}><UnstyledButtonCustom></UnstyledButtonCustom></Link>}
-
 
                 </CardContent>
             </Card>
