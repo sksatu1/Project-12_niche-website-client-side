@@ -10,7 +10,6 @@ const Home = () => {
     const slice = 6;
     return (
         <div>
-            <NavBar></NavBar>
             <Banner></Banner>
             <Bikes
                 slice={slice}

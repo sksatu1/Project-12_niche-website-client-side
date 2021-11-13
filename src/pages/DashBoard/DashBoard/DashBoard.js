@@ -85,8 +85,8 @@ function DashBoard(props) {
                     <br />
                     <Link to={`${url}/pay`}><Button>Pay</Button></Link>
                     <br />
-                    <Link to='/'><Button onClick={logout}>Log out</Button></Link>
                 </Box>}
+                <Link to='/'><Button onClick={logout}>Log out</Button></Link>
             </Box>
         </div >
     );

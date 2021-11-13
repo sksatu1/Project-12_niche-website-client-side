@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import UnstyledButtonCustom from '../../ButtonRoot/UnstyledButtonCustom';
 import { Link } from 'react-router-dom';
+import { Box } from '@mui/system';
 
 const Bike = ({ bike }) => {
     const { name, img, price, _id } = bike;
@@ -29,6 +30,10 @@ const Bike = ({ bike }) => {
                     </Typography>
 
                 </CardContent>
+
+                <Box sx={{ my: '5px' }}>
+                    <Link to={`/purchase/${_id}`}><UnstyledButtonCustom>Purchase</UnstyledButtonCustom></Link>
+                </Box>
             </Card>
         </Grid>
     );

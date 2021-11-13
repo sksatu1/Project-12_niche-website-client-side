@@ -74,8 +74,6 @@ const Purchase = () => {
 
         <Box>
 
-            <NavBar></NavBar>
-
             <Grid container spacing={2}>
                 <Grid item xs={4}>
                     <img width="100%" src={order.img} alt="" />

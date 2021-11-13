@@ -11,13 +11,14 @@ import PrivateRoute from './pages/Login/PrivateRoute/PrivateRoute';
 import Register from './pages/Login/Register/Register';
 import NoteFound from './pages/NotFound/NoteFound';
 import Purchase from './pages/Purchase/Purchase';
+import NavBar from './pages/Shared/NavBar/NavBar';
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
         <BrowserRouter>
-
+          <NavBar></NavBar>
           <Switch>
 
             <Route path='/home'>

@@ -8,7 +8,6 @@ const Explore = () => {
     const slice = 100;
     return (
         <div>
-            <NavBar />
             <Bikes
                 slice={slice}
             ></Bikes>

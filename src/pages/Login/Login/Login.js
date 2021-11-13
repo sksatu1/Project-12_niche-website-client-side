@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useHistory, useLocation } from "react-router-dom";
 import useAuth from '../../../hooks/useAuth';
+import NavBar from '../../Shared/NavBar/NavBar';
 
 const Login = () => {
     const [logInData, setLogInData] = useState({})
