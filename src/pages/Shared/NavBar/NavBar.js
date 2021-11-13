@@ -25,7 +25,7 @@ export default function NavBar() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left' }}>
                         BD Bike Shop
                     </Typography>
                     <NavLink to="/home"><Button color="inherit">Home</Button></NavLink>
