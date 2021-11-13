@@ -26,20 +26,41 @@ const AddProduct = () => {
     }
 
 
+    const inputFormStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+    }
+
+    const inputFieldStyle = {
+        border: '1px solid blue',
+        borderRadius: '5px',
+        marginBottom: '5px',
+        padding: '10px',
+        width: '80%'
+    }
+
     return (
         <div>
             {/* form  */}
             <h1>Add a New Product</h1>
-            <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={handleSubmit(onSubmit)}>
-                <input style={{ marginBottom: '5px', paddingTop: '5px' }} {...register("name", { required: true })} placeholder='Bike model name' />
+            <form style={inputFormStyle} onSubmit={handleSubmit(onSubmit)}>
+                <input style={inputFieldStyle} {...register("name", { required: true })} placeholder='Bike model name' />
 
-                <input style={{ marginBottom: '5px', paddingTop: '5px' }} {...register("description", { required: true })} placeholder='Description' />
+                <input style={inputFieldStyle} {...register("description", { required: true })} placeholder='Description' />
 
-                <input style={{ marginBottom: '5px', paddingTop: '5px' }} {...register("price", { required: true })} placeholder='price' />
+                <input style={inputFieldStyle} {...register("price", { required: true })} placeholder='price' />
 
-                <input style={{ marginBottom: '5px', paddingTop: '5px' }} {...register("img", { required: true })} placeholder='Image URL' />
+                <input style={inputFieldStyle} {...register("img", { required: true })} placeholder='Image URL' />
 
-                <input style={{ marginBottom: '5px', paddingTop: '5px', backgroundColor: 'blue', color: 'white' }} value='Submit' type="submit" />
+                <input style={{
+                    marginBottom: '5px',
+                    padding: '10px',
+                    color: 'blue',
+                    width: '30%',
+                    border: '1px solid blue',
+                    borderRadius: '5px'
+                }} value='Submit' type="submit" />
             </form>
         </div>
     );
